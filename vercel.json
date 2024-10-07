@@ -1,8 +1,0 @@
-{
-    "functions": {
-      "api/initial-sync": {
-        "maxDuration": 60
-      }
-    }
-  }
-  
