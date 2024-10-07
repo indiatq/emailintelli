@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-    provider = "postgresql"
+    provider = "mysql" // Change to MySQL
     url      = env("DATABASE_URL")
 }
 
@@ -34,7 +34,6 @@ enum Role {
 
 model ChatbotInteraction {
     id String @id @default(cuid())
-
     day   String
     count Int    @default(1)
 
@@ -79,13 +78,10 @@ model Account {
     emailAddresses EmailAddress[]
 }
 
-//     // "dev": "next dev --turbo | egrep -v '^\\s?(GET|POST|OPTIONS)'",
-
 model Thread {
     id              String   @id @default(cuid())
     subject         String
     lastMessageDate DateTime
-    participantIds  String[]
     accountId       String
     account         Account  @relation(fields: [accountId], references: [id])
 
@@ -115,9 +111,6 @@ model Email {
     receivedAt           DateTime
     internetMessageId    String
     subject              String
-    sysLabels            String[]
-    keywords             String[]
-    sysClassifications   String[]
     sensitivity          Sensitivity           @default(normal)
     meetingMessageMethod MeetingMessageMethod?
     from                 EmailAddress          @relation("FromEmail", fields: [fromId], references: [id])
@@ -133,10 +126,7 @@ model Email {
     inReplyTo            String?
     references           String?
     threadIndex          String?
-    internetHeaders      Json[]
-    nativeProperties     Json?
     folderId             String?
-    omitted              String[]
 
     emailLabel EmailLabel @default(inbox)
 
@@ -195,3 +185,4 @@ enum MeetingMessageMethod {
     counter
     other
 }
+    
