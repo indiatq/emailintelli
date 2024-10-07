@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+
+  {
+    "functions": {
+      "pages/api/**/*.ts": {
+        "maxDuration": 60
+      }
+    }
+  },
+
   images: {
     remotePatterns: [
       {
