@@ -312,14 +312,12 @@ export const mailRouter = createTRPCRouter({
                 OR: [
                     {
                         address: {
-                            contains: input.query,
-                            mode: 'insensitive',
+                            contains: input.query
                         },
                     },
                     {
                         name: {
-                            contains: input.query,
-                            mode: 'insensitive',
+                            contains: input.query
                         },
                     },
                 ],
