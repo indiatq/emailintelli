@@ -55,8 +55,13 @@ async function upsertEmail(email: EmailMessage, index: number, accountId: string
     try {
 
         // determine email label type
+        console.log(email.sysLabels);
+        console.log(email.from);
+
+
         let emailLabelType: 'inbox' | 'sent' | 'draft' = 'inbox'
         if (email.sysLabels.includes('inbox') || email.sysLabels.includes('important')) {
+
             emailLabelType = 'inbox'
         } else if (email.sysLabels.includes('sent')) {
             emailLabelType = 'sent'
